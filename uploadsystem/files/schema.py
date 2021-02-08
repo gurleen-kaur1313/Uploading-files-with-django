@@ -2,6 +2,7 @@ from graphene_file_upload.scalars import Upload
 import graphene
 from graphene_django import DjangoObjectType
 from files.models import Files
+from datetime import datetime
 
 
 class MyFile(DjangoObjectType):
@@ -24,7 +25,9 @@ class UploadMutation(graphene.Mutation):
 
     def mutate(self, info, file, **kwargs):
         # do something with your file
-        add = Files.objects.create(file=file)
+        add = Files.objects.create()
+        add.file = file
+        add.created = datetime.now
         add.save()
         return UploadMutation(success=True)
 
