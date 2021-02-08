@@ -11,7 +11,7 @@ def userimage_profile_file_path(instance, file_name):
     ext = file_name.split(".")[-1]
     filename = f"{uuid.uuid4()}.{ext}"
 
-    return os.path.join("uploads/user/profile", filename)
+    return os.path.join("uploads", filename)
 
 
 class Files(models.Model):
@@ -24,12 +24,12 @@ class Files(models.Model):
     def __str__(self):
         return f"{self.id} File"
 
-    def save(self, *args, **kwargs):
-        super().save()
+    # def save(self, *args, **kwargs):
+    #     super().save()
 
-        img = Image.open(self.file.path)
+    #     img = Image.open(self.file.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.file.path)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.file.path)
