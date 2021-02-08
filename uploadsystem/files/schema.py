@@ -24,12 +24,9 @@ class UploadMutation(graphene.Mutation):
 
     def mutate(self, info, file, **kwargs):
         # do something with your file
-        if file:
-            add = Files.objects.create(file=file)
-            add.save()
-            return UploadMutation(success=True)
-
-        return UploadMutation(success=False)
+        add = Files.objects.create(file=file)
+        add.save()
+        return UploadMutation(success=True)
 
 
 class Mutation(graphene.ObjectType):
