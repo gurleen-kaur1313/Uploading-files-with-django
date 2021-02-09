@@ -86,9 +86,6 @@ WSGI_APPLICATION = 'uploadsystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'uploaded files',
-        'USER': 'harmanjit',
-        'PASSWORD': 'kismatOP',
     }
 }
 
