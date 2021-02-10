@@ -23,11 +23,8 @@ from graphene_django.views import GraphQLView
 from graphene_file_upload.django import FileUploadGraphQLView
 
 urlpatterns = [
-    # path('', include('files.urls')),
-    path('/', admin.site.urls),
+    path('', admin.site.urls),
     url(r'^graphql', csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True))),
-
-
 ]
 
 if settings.DEBUG:
