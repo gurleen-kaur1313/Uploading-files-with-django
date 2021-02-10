@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.decorators.csrf import csrf_exempt
@@ -24,7 +24,7 @@ from graphene_file_upload.django import FileUploadGraphQLView
 
 urlpatterns = [
     path('', admin.site.urls),
-    url(r'^graphql', csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True))),
+    path('graphq/', csrf_exempt(FileUploadGraphQLView.as_view(graphiql=True))),
 ]
 
 if settings.DEBUG:

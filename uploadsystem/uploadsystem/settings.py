@@ -29,8 +29,11 @@ dotenv_file = os.path.join(BASE_DIR, ".env")
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
+EMAIL_HOST_USER = os.environ.get(
+    'EMAIL_HOST_USER', 'harmanjit140500@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '123456')
 
-ALLOWED_HOSTS = ['https://upload-files-django.herokuapp.com/','localhost','http://127.0.0.1:8000/']
+ALLOWED_HOSTS = ['https://upload-files-django.herokuapp.com/','localhost','127.0.0.1','0.0.0.0']
 
 
 # Application definition
@@ -91,12 +94,14 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':'db.sqlite3',
+        'NAME':BASE_DIR / 'db.sqlite3',
     }
 }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+
 WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -151,9 +156,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-AWS_ACCESS_KEY_ID =  str(os.environ.get('AWS_ACCESS_KEY_ID'))
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 # YOU NEED TO ADD KEY HERE BEFORE UPLOAD GURLEEN!!!!
-AWS_SECRET_ACCESS_KEY = str(os.environ.get('AWS_SECRET_ACCESS_KEY'))
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = "upload-system-bucket"
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
